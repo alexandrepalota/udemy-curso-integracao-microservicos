@@ -1,0 +1,8 @@
+server:
+  port: 8081
+  servlet:
+    contextPath: /v1/api/product-api
+
+spring:
+  application:
+    name: product-api
