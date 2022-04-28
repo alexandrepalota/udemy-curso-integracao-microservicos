@@ -1,7 +1,7 @@
 server:
   port: 8081
   servlet:
-    contextPath: /v1/api/product-api
+    contextPath: /api
 
 spring:
   application:
