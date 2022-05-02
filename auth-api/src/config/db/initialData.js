@@ -8,6 +8,5 @@ export async function createInitialData() {
         name: 'Alexandre',
         email: 'alexandre@email.com',
         password: password
-
     })
 }
