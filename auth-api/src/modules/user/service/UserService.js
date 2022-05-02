@@ -1,5 +1,6 @@
-import UserRepository from './../repository/UserRepository'
-import * as httpStatus from './../../../config/constants/httpStatus'
+import UserRepository from './../repository/UserRepository.js'
+import * as httpStatus from './../../../config/constants/httpStatus.js'
+import UserException from '../exceptions/UserException.js'
 
 class UserService {
 
@@ -7,10 +8,8 @@ class UserService {
         try {
             const {email} = req.params
             this.validateRequestData(email)
-            let user = UserRepository.findByEmail(email)
-            if (!user) {
-
-            }
+            let user = await UserRepository.findByEmail(email)
+            this.validateUserNotFound(user)
             return {
                 status: httpStatus.SUCCESS,
                 user: {
@@ -22,13 +21,17 @@ class UserService {
         } catch (error) {
             return {
                 status: error.status ? error.status : httpStatus.INTERNAL_SERVER_ERROR,
-                message: error.status
+                message: error.message
             }
         }
     }
 
     validateRequestData(email) {
-        if (!email) throw new Error('User e-mail was not informed.')
+        if (!email) throw new UserException(httpStatus.BAD_REQUEST, 'User e-mail was not informed.')
+    }
+
+    validateUserNotFound(user) {
+        if (!user) throw new UserException(httpStatus.BAD_REQUEST, 'User was not found.')
     }
 }
 
