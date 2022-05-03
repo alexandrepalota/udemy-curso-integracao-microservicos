@@ -37,7 +37,7 @@ class UserService {
             this.validateUserNotFound(user)
             await this.validatePassword(password, user.password)
             const authUser = { id: user.id, name: user.name, email: user.email }
-            const accessToken = jwt.sign({ authUser }, secrets.apiSecret, { expiresIn: '1d'})
+            const accessToken = jwt.sign({ authUser }, secrets.API_SECRET, { expiresIn: '1d'})
             return  {
                 status: httpStatus.SUCCESS,
                 accessToken
