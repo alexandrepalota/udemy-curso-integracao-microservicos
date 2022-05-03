@@ -35,4 +35,7 @@ public class Product {
     @JoinColumn(name = "FK_SUPPLIER", nullable = false)
     private Supplier supplier;
 
+    @Column(name = "QT_AVAILABLE", nullable = false)
+    private Integer quantityAvailable;
+
 }
