@@ -9,4 +9,9 @@ export async function createInitialData() {
         email: 'alexandre@email.com',
         password: password
     })
+    await User.create({
+        name: 'Marina',
+        email: 'marina@email.com',
+        password: password
+    })
 }
